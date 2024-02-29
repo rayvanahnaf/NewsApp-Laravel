@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\Category;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class CategoryController extends Controller
 {
@@ -14,7 +16,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view("home.category.index");
+        // mengurutkan data berdasarkan data terbaru
+        $category = Category::latest()->get();
+        return view('home.category.index', compact('category'));
     }
 
     /**
@@ -24,7 +28,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('home.category.create');
     }
 
     /**
@@ -35,7 +39,28 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+        // melakukan validate data
+        $this->validate($request,[
+            'name' => 'required|max:100',
+            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048'
+        ]);
+        // melakukan upload image
+        $image = $request->file('image');
+        //menyimpan image yang
+        //diupload ke folder
+        //storage /app/public/category
+        //fungsi hash untuk nama yang unik
+        // fungsi getClientOriginalName
+        // itu menggunakan nama asli dari image
+        $image->storeAs('public/category', $image->hashName());
         //
+        Category::create([
+            'name' => $request->name,
+            'slug' => Str::slug($request->name),
+            'image' => $image->hashName()
+        ]);
+        // melakukan return redirect
+        return redirect()->route('category.index')->with('success', 'category berhasil ditambahkan');
     }
 
     /**
