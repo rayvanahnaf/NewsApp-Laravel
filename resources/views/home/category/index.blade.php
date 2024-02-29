@@ -34,7 +34,7 @@
                                         <td>{{ $row->name }}</td>
                                         <td>{{ $row->slug }}</td>
                                         <td><img src="{{ $row->image }}" alt="ini gambar" width="100px"></td>
-                                        <td>
+                                        <td class="d-flex gap-2">
                                             <!-- show using  modal by id {{ $row->id }} -->
                                             <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                                 data-bs-target="#basicModal{{ $row->id }}">
@@ -47,6 +47,14 @@
                                             <a href="{{ route('category.edit', $row->id) }}" class="btn btn-warning">
                                                 <i class="bi bi-pencil-square"></i>
                                             </a>
+                                            {{-- button delete with route category.destroy {{ row->id }} --}}
+                                            <form action="{{ route('category.destroy', $row->id) }}" method="post">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </form>
                                         </td>
                                     </tr>
 

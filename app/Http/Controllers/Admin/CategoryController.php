@@ -119,7 +119,7 @@ class CategoryController extends Controller
         } else {
             // jika gambarnya pengen diupdate
             //hapus image lama
-            Storage::disk('local')->delete('public/category/' .basename($category->image));
+            Storage::disk('local')->delete('public/category/' . basename($category->image));
 
             // upload image baru
             $image = $request->file('image');
@@ -143,6 +143,15 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // get data by id
+        $category = Category::find($id);
+
+        // delete image
+        // basename itu untuk mengambil nama file
+        Storage::disk('local')->delete('public/category/' . basename($category->image));
+
+        // delete data by id
+        $category->delete();
+        return redirect()->route('category.index');
     }
 }
