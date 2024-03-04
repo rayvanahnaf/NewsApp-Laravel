@@ -59,11 +59,13 @@
                                     </tr>
 
                                 @empty
-                                    <p>belum ada data, data masih kosong</p>
+                                    <p>Belum ada data nih!!, input data yuk!! 😁</p>
                                 @endforelse
 
                             </tbody>
                         </table>
+                        {{-- paginate --}}
+                        {{ $category->links('pagination::bootstrap-5') }}
                     </div>
                 </div>
             </div>
