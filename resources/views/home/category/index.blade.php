@@ -10,6 +10,19 @@
                     <i class="bi bi-plus">Create Project</i>
                 </a>
             </div>
+            @if (session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
+
+            @if (session('delete'))
+                <div class="alert alert-danger">
+                    {{ session('delete') }}
+                </div>
+            @endif
+
+            
             <div class="container">
                 <div class="card">
                     <div class="card-body">
@@ -28,7 +41,6 @@
 
                             <tbody>
                                 @forelse ($category as $row)
-
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $row->name }}</td>

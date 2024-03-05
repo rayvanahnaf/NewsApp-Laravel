@@ -29,7 +29,10 @@
     <link href="{{asset('admin/assets/vendor/simple-datatables/style.css')}}" rel="stylesheet">
 
     <!-- Template Main CSS File -->
-    <link href="{{asset('admin/assets/css/style.css')}}" rel="stylesheet">
+    <link href="{{asset('admin/assets/css/style.css')}}" rel="stylesheet">'
+    
+    {{-- CKeditor 5 CDN --}}
+    <script src="https://cdn.ckeditor.com/ckeditor5/41.1.0/classic/ckeditor.js"></script>
 
     <!-- =======================================================
   * Template Name: NiceAdmin

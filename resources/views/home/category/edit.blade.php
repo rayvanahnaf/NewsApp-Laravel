@@ -4,6 +4,11 @@
     <div class="row">
         <div class="card p-4">
             <h3>Category Update</h3>
+            @if (session('update'))
+                <div class="alert alert-warning">
+                    {{ session('update') }}
+                </div>
+            @endif
 
             <hr>
             <form action="{{ route('category.update', $category->id) }}" method="post" enctype="multipart/form-data">

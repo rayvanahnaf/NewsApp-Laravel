@@ -131,8 +131,9 @@ class CategoryController extends Controller
                 'slug' => Str::slug($request->name),
                 'image' => $image->hashName()
             ]);
-            return redirect()->route('category.index');
         }
+        $category->update();
+            return redirect()->route('category.index')->with('update', 'category berhasil di update');
     }
 
     /**
@@ -152,6 +153,6 @@ class CategoryController extends Controller
 
         // delete data by id
         $category->delete();
-        return redirect()->route('category.index');
+        return redirect()->route('category.index')->with('delete', 'category berhasil di hapus');
     }
 }

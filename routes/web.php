@@ -26,7 +26,7 @@ Auth::routes();
 // Auth::routes();
 
 // Route::match(['get','post'], '/register', function(){
-//     return redirect('/login');
+//     return redirect('/login');   
 // });
 
 
