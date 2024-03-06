@@ -18,6 +18,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('category_id');
             $table->string('title');
+            $table->string('image');
             //slug - url friendly
             $table->string('slug');
             $table->longText('content');

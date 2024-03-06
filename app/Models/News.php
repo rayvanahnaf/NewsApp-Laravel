@@ -21,7 +21,7 @@ class News extends Model
     public function category()
     {
         // one to many relationship using hasMany
-        return $this->hasMany(Category::class);
+        return $this->belongsTo(Category::class);
     }
     //accessor image category
     public function image(): Attribute

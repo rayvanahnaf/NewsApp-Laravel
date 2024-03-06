@@ -12,7 +12,7 @@
                     <input type="text" class="form-control" id="inputTitle" name="title" value="{{ old('title') }}">
 
                     <label for="inputImage" class="form-label">News Image</label>
-                    <input type="file" class="form-control" id="inputImage" name="title" value="{{ old('title') }}">
+                    <input type="file" class="form-control" id="inputImage" name="image" value="{{ old('title') }}">
                 </div>
                 <label class="col-sm-2 col-form-label">Content Select</label>
 
@@ -27,7 +27,7 @@
                 </div>
                 <div class="mb-2">
                     <label for="inputTitle" class="form-label">Content News</label>
-                    <textarea id="editor"></textarea>
+                    <textarea id="editor" name="content"></textarea>
                 </div>
 
 
