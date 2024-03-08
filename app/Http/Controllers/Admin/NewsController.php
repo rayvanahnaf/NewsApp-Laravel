@@ -42,7 +42,7 @@ class NewsController extends Controller
     {
         $title = 'Create News';
         $category = Category::all();
-        return view('home.news.create', compact('title', 'news', 'category'));
+        return view('home.news.create', compact('title','category'));
     }
 
     /**
@@ -84,7 +84,9 @@ class NewsController extends Controller
      */
     public function show($id)
     {
-        //
+        $title = 'News title';
+        $news = News::findOrFail($id);
+        return view('home.news.show', compact('title', 'news'));
     }
 
     /**
@@ -95,7 +97,12 @@ class NewsController extends Controller
      */
     public function edit($id)
     {
-        //
+        //get data by id
+        $news = News::findOrFail($id);
+        $category = Category::all();
+        $title = 'News edit';
+
+        return view('home.news.edit', compact('title', 'news', 'category'));
     }
 
     /**

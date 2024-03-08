@@ -85,7 +85,7 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        // title halaman edit
+        // title halaman e  dit
         $title = 'Category Edit';
         // get data category edit
         $category = Category::find($id);

@@ -31,12 +31,12 @@
                             <td><img src="{{ $row->image }}" width="100px" alt="image" srcset=""></td>
                             <td><img src="{{ $row->category->image }}" width="100px" alt="Ini image category"></td>
                             <td>
-                                <button class="btn btn-primary">
+                                <a href="{{ route('news.show', $row->id) }}" class="btn btn-primary">
                                     <i class="bi bi-eye"></i>
-                                </button>
-                                <button class="btn btn-warning">
+                                </a>
+                                <a href="{{ route('news.edit', $row->id) }}" class="btn btn-warning">
                                     <i class="bi bi-pencil"></i>
-                                </button>
+                                </a>
                                 <button class="btn btn-danger">
                                     <i class="bi bi-trash"></i>
                                 </button>

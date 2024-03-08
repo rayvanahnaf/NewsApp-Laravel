@@ -5,7 +5,8 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>{{ $title }}</title>
+    
+    <title>news</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -52,6 +53,7 @@
     {{-- main --}}
     <main id="main">
         @yield('content')
+        
     </main>
     <!-- End #main -->
     <!-- ======= Footer ======= -->
