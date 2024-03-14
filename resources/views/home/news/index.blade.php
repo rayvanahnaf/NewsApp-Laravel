@@ -23,7 +23,9 @@
                         </tr>
                     </thead>
                     <tbody>
+
                         @forelse ($news as $row)
+                        
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $row->title }}</td>
@@ -37,9 +39,13 @@
                                 <a href="{{ route('news.edit', $row->id) }}" class="btn btn-warning">
                                     <i class="bi bi-pencil"></i>
                                 </a>
-                                <button class="btn btn-danger">
-                                    <i class="bi bi-trash"></i>
-                                </button>
+                                <form action="{{ route('news.destroy', $row->id) }}" class="d-inline" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-danger" type="submit">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                         @empty

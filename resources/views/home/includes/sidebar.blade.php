@@ -16,6 +16,13 @@
     </ul>
 
     @if (Auth::user()->role == 'admin')
+    <ul class="sidebar-nav" id="sidebar-nav">
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('allUser') }}">
+            <i class="bi bi-grid"></i>
+            <span>User</span>
+        </a>
+    </li>`
         {{-- Category & News --}}
         <li class="nav-item">
             
@@ -31,6 +38,7 @@
                 <span>news</span>
             </a>
         </li>
+    </ul>
     @else
         
     @endif

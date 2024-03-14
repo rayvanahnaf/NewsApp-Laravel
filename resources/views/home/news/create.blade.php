@@ -27,7 +27,9 @@
                 </div>
                 <div class="mb-2">
                     <label for="inputTitle" class="form-label">Content News</label>
-                    <textarea id="editor" name="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam debitis soluta unde dolor, neque excepturi sint assumenda, asperiores sequi earum repellat labore, itaque dolorem doloremque repellendus. Est, aliquam totam! Minima dolore possimus doloremque maxime quibusdam natus itaque quae dignissimos! Vitae quos nihil perspiciatis, at magni odio neque error sunt vel? Magnam rem, nulla explicabo laborum quisquam exercitationem eum non at mollitia nam nesciunt! Quos rerum tenetur itaque atque quas ea sed quisquam optio architecto harum aliquam consectetur rem assumenda ab, corporis repellendus ut commodi aperiam quod voluptas fugiat ratione debitis maiores. Odit autem ab consectetur voluptas facilis facere accusantium voluptatem.</textarea>
+                    <textarea id="editor" name="content">
+                        
+                    </textarea>
                 </div>
 
 
