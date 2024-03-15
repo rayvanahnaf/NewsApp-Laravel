@@ -16,9 +16,7 @@ use App\Http\Controllers\Admin\CategoryController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [App\Http\Controllers\Frontend\FrontendController::class, 'index']);
 
 Auth::routes();
 
@@ -39,6 +37,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [\App\Http\Controllers\Profile\ProfileController::class, 'index'])->name('profile.index');
     Route::get('/change-password', [\App\Http\Controllers\Profile\ProfileController::class, 'changePassword'])->name('profile.change-password');
     Route::put('/update-password', [\App\Http\Controllers\Profile\ProfileController::class, 'updatePassword'])->name('profile.update-password');
+    Route::get('/edit-profile', [App\Http\Controllers\Profile\ProfileController::class, 'editProfile'])->name('editProfile');
+    Route::put('/updateProfile', [App\Http\Controllers\Profile\ProfileController::class, 'updateProfile'])->name('updateProfile');
 
     // route for admin
     Route::middleware(['auth', 'admin'])->group(function () {
@@ -52,5 +52,6 @@ Route::middleware('auth')->group(function () {
         Route::put('/resetPassword/{id}',[App\Http\Controllers\Profile\ProfileController::class, 'resetPassword'])->name('resetPassword');
         Route::get('/createProfile', [App\Http\Controllers\Profile\ProfileController::class, 'createProfile'])->name('createProfile');
         Route::post('/storeProfile', [App\Http\Controllers\Profile\ProfileController::class, 'storeProfile'])->name('storeProfile');
+        
     });
 });

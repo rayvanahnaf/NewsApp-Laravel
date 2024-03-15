@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\Profile;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Models\User as ModelsUser;
-use GrahamCampbell\ResultType\Success;
+use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Hash;
+use GrahamCampbell\ResultType\Success;
+use Illuminate\Support\Facades\Storage;
 use SebastianBergmann\CodeUnit\FunctionUnit;
 use Symfony\Component\HttpKernel\Profiler\Profile;
 
@@ -100,9 +101,10 @@ class ProfileController extends Controller
             'title'
         ));
     }
-    public function storeProfile(Request $request){
+    public function storeProfile(Request $request)
+    {
         // validate
-        $this->validate($request,[
+        $this->validate($request, [
             'first_name' => 'required',
             'image' => 'image|mimes:jpeg,png,jpg|max:2048'
         ]);
@@ -110,7 +112,7 @@ class ProfileController extends Controller
         // store image
         $image = $request->file('image');
         $image->storeAs('public/profile', $image->getClientOriginalName());
-        
+
         // get user login
         $user = auth()->user();
 
@@ -122,5 +124,41 @@ class ProfileController extends Controller
 
         return redirect()->route('profile.index')->with('succes', 'Profile Has Been Created');
     }
-}
+    public function editProfile()
+    {
+        $user = auth()->user();
 
+        $title = 'Edit Profile';
+
+        return view('home.profile.edit', compact(
+            'title',
+            'user'
+        ));
+    }
+    public function updateProfile(Request $request)
+    {
+        $this->validate($request, [
+            'first_name' => 'required',
+            'image' => 'image|mimes:jpeg,png,jpg|max:2048',
+        ]);
+        $user = auth()->user();
+        if ($request->file('image') == '') {
+            $user->profile->update([
+                'first_name' => $request->first_name
+            ]);
+
+            return redirect()->route('profile.index')->with('succes', 'Profile has been update');
+        } else {
+            // delete image
+            Storage::delete('public/profile/' . basename($user->profile->image));
+            $image = $request->file('image');
+            $image->storeAs('public/profile', $image->getClientOriginalName());
+
+            $user->profile->update([
+                'first_name' => $request->first_name,
+                'image' => $image->getClientOriginalName()
+            ]);
+            return redirect()->route('profile.index')->with('succes', 'Profile has been update');
+        }
+    }
+}

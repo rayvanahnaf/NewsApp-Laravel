@@ -23,9 +23,15 @@
                     <li class="list-group-item">E-Mail Account = <strong>{{ Auth::user()->email }}</li>
                 </ul>
                 <br>
+                @if (empty( Auth::user()->profile->image))
                 <a href="{{ route('createProfile') }}" class="btn btn-info">
                     <i class="bi bi-plus">Create Profile</i>
                 </a>
+                @else
+                <a href="{{ route('editProfile') }}" class="btn btn-warning mt-2">
+                    <i class="bi bi-pencil">Edit Profile</i>
+                </a>
+                @endif
             </div>
         </div>
     </div>
