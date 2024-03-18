@@ -8,7 +8,6 @@ use App\Models\News;
 use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use Illuminate\Session\Store;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 
@@ -22,7 +21,7 @@ class NewsController extends Controller
     public function index()
     {
         // title untuk memberikan judul halaman
-        $title = 'Index News';
+        $title = 'News - Index';
 
         // get data terbaru dari table news/dari model news
         $news = News::latest()->paginate(5);
@@ -42,9 +41,12 @@ class NewsController extends Controller
      */
     public function create()
     {
-        $title = 'Create News';
+        $title = 'News - Create';
         $category = Category::all();
-        return view('home.news.create', compact('title','category'));
+        return view('home.news.create', compact(
+            'title',
+            'category'
+        ));
     }
 
     /**
@@ -68,14 +70,20 @@ class NewsController extends Controller
         // fungsi hasName bikin random nama file
         $image->storeAs('public/news', $image->hashName());
         //create data kedalam table news
-        News::create([
-            'title' => $request->title,
-            'content' => $request->content,
-            'category_id' => $request->category_id,
-            'image' => $image->hashName(),
-            'slug' => Str::slug($request->title),
-        ]);
-        return redirect()->route('news.index')->with('success', 'Mantap Berita Berhasil Di Tambahkan! 👍');
+        if (
+            News::create([
+                'title' => $request->title,
+                'content' => $request->content,
+                'category_id' => $request->category_id,
+                'image' => $image->hashName(),
+                'slug' => Str::slug($request->title),
+            ])
+        ) {
+            return redirect()->route('news.index')->with('success', 'Berita Berhasil Di Tambahkan');
+        } else {
+            return redirect()->route('news.index')->with('errors', 'Berita Gagal Di Tambahkan');
+        }
+        
     }
 
     /**
@@ -86,9 +94,14 @@ class NewsController extends Controller
      */
     public function show($id)
     {
-        $title = 'News title';
+        $title = 'News - Show';
+        // get data by id using model News
+        // fungsi dari finOrFail adalah jika data tidak ditemukan maka akan menampilkan eror 404
         $news = News::findOrFail($id);
-        return view('home.news.show', compact('title', 'news'));
+        return view('home.news.show', compact(
+            'title',
+            'news'
+        ));
     }
 
     /**
@@ -99,12 +112,16 @@ class NewsController extends Controller
      */
     public function edit($id)
     {
-        //get data by id
+        // get data by id
+        $title = 'News - Edit';
         $news = News::findOrFail($id);
         $category = Category::all();
-        $title = 'News edit';
+        return view('home.news.edit', compact(
+            'title',
+            'category',
+            'news'
+        ));
 
-        return view('home.news.edit', compact('title', 'news', 'category'));
     }
 
     /**
@@ -116,29 +133,25 @@ class NewsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //validate
         $this->validate($request,[
             'title' => 'required|max:255',
             'category_id' => 'required',
             'content' => 'required',
-            'image' => 'image|mimes:jpeg,png,jpg|max:5120'
+            'image' => 'image|mimes:jpeg,png,jpg|max:5120' 
         ]);
 
-        // get data by id
         $news = News::findOrFail($id);
-
-        // jika tidak ada image yang di upload
-        if($request->file('image') == ""){
+        if ($request->file('image') == "") {
             // update data
             $news->update([
                 'title' => $request->title,
-                'slug' => Str::slug($request->title),
+                'slug' => Str::slug($request->category),
                 'category_id' => $request->category_id,
-                'content' => $request->content
+                'content' => $request->content  
             ]);
         } else {
             // hapus old image
-            Storage::disk('local')->delete('public/news/' .basename($news->image));
+            Storage::disk('local')->delete('public/news' .basename($news->image));
 
             // upload new image
             $image = $request->file('image');
@@ -147,10 +160,10 @@ class NewsController extends Controller
             // update data
             $news->update([
                 'title' => $request->title,
-                'slug' => Str::slug($request->title),
                 'category_id' => $request->category_id,
+                'slug' => Str::slug($request->category),
                 'image' => $image->hashName(),
-                'content' => $request->content          
+                'content' => $request->content
             ]);
         }
 
@@ -166,8 +179,10 @@ class NewsController extends Controller
     public function destroy($id)
     {
         $news = News::findOrFail($id);
-        Storage::disk('local')->delete('public/news/' . basename($news->image));
 
+        // delete image
+        Storage::disk('local')->delete('public/news' . basename($news->image));
+        // delete data
         $news->delete();
 
         return redirect()->route('news.index');
