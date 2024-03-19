@@ -9,7 +9,7 @@
 
                     <div class="d-md-flex post-entry-2 half">
                         <a href="single-post.html" class="me-4 thumbnail">
-                            <img src="assets/img/post-landscape-6.jpg" alt="" class="img-fluid">
+                            <img src="{{ asset('frontend/assets/img/post-landscape-6.jpg') }}" alt="" class="img-fluid">
                         </a>
                         <div>
                             <div class="post-meta"><span class="date">Culture</span> <span class="mx-1">&bullet;</span>
@@ -28,7 +28,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
     </section>

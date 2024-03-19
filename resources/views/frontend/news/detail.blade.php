@@ -12,7 +12,7 @@
                         <h1 class="mb-5">{{ $news->title }}</h1>
                         <img src="{{ $news->image }}" alt="">
                         <p>
-                            {{ $news->image }}
+                            {!! $news->content !!}
                         </p>
                     </div>
                 </div>
