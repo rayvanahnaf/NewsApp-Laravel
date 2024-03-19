@@ -8,14 +8,10 @@
         </a>
 
         <nav id="navbar" class="navbar">
-            <nav id="navbar" class="navbar">
+            <ul>
                 @foreach ($category as $row)
-                    <ul>
-                        <li><a href="#">{{ $row->name }}</a></li>
-                    </ul>
+                    <li><a href="#">{{ $row->name }}</a></li>
                 @endforeach
-            </nav><!-- .navbar -->
-
             </ul>
         </nav><!-- .navbar -->
 
@@ -36,11 +32,14 @@
                 </form>
             </div>
             <!-- End Search Form -->
+
+            {{-- bila belum login maka muncul login dan register --}}
+            {{-- jika sudah login maka muncol nama home --}}
             @guest
-                <a href="{{ route('login') }}" class="mx-2">Login</a>
-                <a href="{{ route('register') }}" class="mx-2">Register</a>
+                <a href="{{ route('login') }}" class="btn btn-dark mx-2">Login</a>
+                <a href="{{ route('register') }}" class="btn btn-dark mx-2">Register</a>
             @else
-                <a href="{{ route('home') }}" class="mx-2">Home</a>
+                <a href="{{ route('home') }}" class="btn btn-dark mx-2">Home</a>
             @endguest
 
         </div>

@@ -37,7 +37,7 @@
   * Template URL: https://bootstrapmade.com/zenblog-bootstrap-blog-template/
   * Author: BootstrapMade.com
   * License: https:///bootstrapmade.com/license/
-  ======================================================== -->
+    ======================================================== -->
 </head>
 
 <body>
@@ -46,6 +46,7 @@
     @include('frontend.include.navbar')
     <!-- End Header -->
 
+    {{-- #main --}}
     <main id="main">
 
         <!-- ======= Hero Slider Section ======= -->
@@ -53,13 +54,12 @@
         <!-- End Hero Slider Section -->
 
         <!-- ======= Post Grid Section ======= -->
-        <section id="posts" class="posts">
+        {{-- <section id="posts" class="posts">
             <div class="container" data-aos="fade-up">
                 <div class="row g-5">
                     <div class="col-lg-4">
                         <div class="post-entry-1 lg">
-                            <a href="single-post.html"><img
-                                    src="{{ asset('frontend/assets/img/post-landscape-1.j') }}pg" alt=""
+                            <a href="single-post.html"><img src="{{ asset('ZenBlog/assets/img/post-landscape-1.jpg') }}" alt=""
                                     class="img-fluid"></a>
                             <div class="post-meta"><span class="date">Culture</span> <span
                                     class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
@@ -71,8 +71,8 @@
                                 atque eveniet, quo, praesentium dignissimos</p>
 
                             <div class="d-flex align-items-center author">
-                                <div class="photo"><img src="{{ asset('frontend/assets/img/person-1.jpg') }}"
-                                        alt="" class="img-fluid"></div>
+                                <div class="photo"><img src="{{ asset('ZenBlog/assets/img/person-1.jpg') }}" alt=""
+                                        class="img-fluid"></div>
                                 <div class="name">
                                     <h3 class="m-0 p-0">Cameron Williamson</h3>
                                 </div>
@@ -85,16 +85,14 @@
                         <div class="row g-5">
                             <div class="col-lg-4 border-start custom-border">
                                 <div class="post-entry-1">
-                                    <a href="single-post.html"><img
-                                            src="{{ asset('frontend/assets/img/post-landscape-2.j') }}pg"
+                                    <a href="single-post.html"><img src="{{asset('ZenBlog/assets/img/post-landscape-2.jpg')}}"
                                             alt="" class="img-fluid"></a>
                                     <div class="post-meta"><span class="date">Sport</span> <span
                                             class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
                                     <h2><a href="single-post.html">Let’s Get Back to Work, New York</a></h2>
                                 </div>
                                 <div class="post-entry-1">
-                                    <a href="single-post.html"><img
-                                            src="{{ asset('frontend/assets/img/post-landscape-5.j') }}pg"
+                                    <a href="single-post.html"><img src="{{asset('ZenBlog/assets/img/post-landscape-5.jpg')}}"
                                             alt="" class="img-fluid"></a>
                                     <div class="post-meta"><span class="date">Food</span> <span
                                             class="mx-1">&bullet;</span> <span>Jul 17th '22</span></div>
@@ -102,8 +100,7 @@
                                             Video Calls?</a></h2>
                                 </div>
                                 <div class="post-entry-1">
-                                    <a href="single-post.html"><img
-                                            src="{{ asset('frontend/assets/img/post-landscape-7.j') }}pg"
+                                    <a href="single-post.html"><img src="{{asset('ZenBlog/assets/img/post-landscape-7.jpg')}}"
                                             alt="" class="img-fluid"></a>
                                     <div class="post-meta"><span class="date">Design</span> <span
                                             class="mx-1">&bullet;</span> <span>Mar 15th '22</span></div>
@@ -113,8 +110,7 @@
                             </div>
                             <div class="col-lg-4 border-start custom-border">
                                 <div class="post-entry-1">
-                                    <a href="single-post.html"><img
-                                            src="{{ asset('frontend/assets/img/post-landscape-3.j') }}pg"
+                                    <a href="single-post.html"><img src="{{asset('ZenBlog/assets/img/post-landscape-3.jpg')}}"
                                             alt="" class="img-fluid"></a>
                                     <div class="post-meta"><span class="date">Business</span> <span
                                             class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
@@ -122,8 +118,7 @@
                                             Instagram</a></h2>
                                 </div>
                                 <div class="post-entry-1">
-                                    <a href="single-post.html"><img
-                                            src="{{ asset('frontend/assets/img/post-landscape-6.j') }}pg"
+                                    <a href="single-post.html"><img src="{{asset('ZenBlog/assets/img/post-landscape-6.jpg')}}"
                                             alt="" class="img-fluid"></a>
                                     <div class="post-meta"><span class="date">Tech</span> <span
                                             class="mx-1">&bullet;</span> <span>Mar 1st '22</span></div>
@@ -131,8 +126,7 @@
                                             Know</a></h2>
                                 </div>
                                 <div class="post-entry-1">
-                                    <a href="single-post.html"><img
-                                            src="{{ asset('frontend/assets/img/post-landscape-8.j') }}pg"
+                                    <a href="single-post.html"><img src="{{asset('ZenBlog/assets/img/post-landscape-8.jpg')}}"
                                             alt="" class="img-fluid"></a>
                                     <div class="post-meta"><span class="date">Travel</span> <span
                                             class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
@@ -193,16 +187,17 @@
                 </div> <!-- End .row -->
             </div>
         </section> 
-        <!-- End Post Grid Section -->
+        <!-- End Post Grid Section --> --}}
 
         <!-- ======= Culture Category Section ======= -->
         @yield('content')
         <!-- End Culture Category Section -->
+
     </main>
     <!-- End #main -->
 
     <!-- ======= Footer ======= -->
-    @include('home.includes.footer')
+    @include('frontend.include.footer')
 
     <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i
             class="bi bi-arrow-up-short"></i></a>

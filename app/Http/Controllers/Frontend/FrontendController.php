@@ -9,44 +9,50 @@ use Illuminate\Http\Request;
 
 class FrontendController extends Controller
 {
-    public function index()
-    {
-        $category = Category::latest()->get();
-
-        $sliderNews = News::latest()->limit(3)->get();
-
-
-        return view('frontend.news.index', compact(
-            'category',
-            'sliderNews',
-        ));
-    }
-
-    public function detailNews($slug)
-    {
+    public function index() {
         // get data category
         $category = Category::latest()->get();
 
-        $news = News::where('slug', $slug)->first();
+        // slider/carousel news latest
+        $sliderNews = News::latest()->limit(4)->get();
 
-        return view('frontend.news.detail', compact(
+        return view('frontend.news.index', compact(
             'category',
-            'news'
+            'sliderNews'
         ));
     }
 
-    public function detailCategory($slug)
-    {
-
+    public function detailNews($slug) {
+        // get data category
         $category = Category::latest()->get();
 
+        // get data news
+        $news = News::where('slug', $slug)->first();
+
+        // 
+        $allNews = News::latest()->get();
+
+        return view('frontend.news.detail', compact(
+            'category',
+            'news',
+            'allNews'
+        ));
+    }
+
+    public function detailCategory($slug) {
+        // get data category
+        $category = Category::latest()->get();
+
+        // data category by slug
         $detailCategory = Category::where('slug', $slug)->first();
 
+        // get data news by category
         $news = News::where('category_id', $detailCategory->id)->latest()->get();
 
         return view('frontend.news.detailCategory', compact(
             'category',
-            'detailCategory'
+            'detailCategory',
+            'news'
         ));
     }
 }
