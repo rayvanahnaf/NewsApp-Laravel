@@ -55,7 +55,7 @@
                             {{-- Get the fisrt news from the category --}}
                             {{-- The function of take(1) is fot take a one news --}}
                             <div class="d-lg-flex post-entry-2">
-                                <a href="single-post.html" class="me-4 thumbnail mb-4 mb-lg-0 d-inline-block">
+                                <a href="{{ route('detailNews', $news->slug) }}" class="me-4 thumbnail mb-4 mb-lg-0 d-inline-block">
                                     <img src="{{ $news->image }}" alt="" class="img-fluid">
                                 </a>
                                 <div>
@@ -63,7 +63,7 @@
                                             class="mx-1">&bullet;</span>
                                         <span>{{ $news->created_at->diffForHumans() }}</span>
                                     </div>
-                                    <h3><a href="#">{{ $news->title }}</a></h3>
+                                    <h3><a href="{{ route('detailNews', $news->slug) }}">{{ $news->title }}</a></h3>
                                     <p>{{ Str::limit(strip_tags($news->content, 70)) }}</p>
                                     <div class="d-flex align-items-center author">
                                         <div class="photo"><img src="{{ asset('forntEdn/assets/img/person-2.jpg"') }}"
@@ -84,12 +84,12 @@
                             @foreach ($row->news->random(1) as $news)
                                 <div class="col-lg-4">
                                     <div class="post-entry-1 border-bottom">
-                                        <a href="#"><img src="{{ $news->image }}" alt=""
+                                        <a href="{{ route('detailNews', $news->slug) }}"><img src="{{ $news->image }}" alt=""
                                                 class="img-fluid"></a>
                                         <div class="post-meta"><span class="date">{{ $row->title }}</span> <span
                                                 class="mx-1">&bullet;</span>
                                             <span>{{ $news->created_at->diffForHumans() }}</span></div>
-                                        <h2 class="mb-2"><a href="single-post.html"></a></h2>
+                                        <h2 class="mb-2"><a href="{{ route('detailNews', $news->slug) }}"></a></h2>
                                         <span class="author mb-3 d-block">Admin</span>
                                         <p class="mb-4 d-block">{{ Str::limit(strip_tags($news->content, 30)) }}</p>
                                     </div>
@@ -97,7 +97,7 @@
                                     <div class="post-entry-1">
                                         <div class="post-meta"><span class="date">Culture</span> <span
                                                 class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-                                        <h2 class="mb-2"><a href="single-post.html">5 Great Startup Tips for Female
+                                        <h2 class="mb-2"><a href="{{ route('detailNews', $news->slug) }}">5 Great Startup Tips for Female
                                                 Founders</a>
                                         </h2>
                                         <span class="author mb-3 d-block">Jenny Wilson</span>
@@ -108,12 +108,12 @@
                             @foreach ($row->news->random(1) as $news)
                             <div class="col-lg-8">
                                 <div class="post-entry-1">
-                                    <a href="#"><img
+                                    <a href="{{ route('detailNews', $news->slug) }}"><img
                                             src="{{ $news->image }}" alt=""
                                             class="img-fluid"></a>
                                     <div class="post-meta"><span class="date">{{ $row->name }}</span> <span
                                             class="mx-1">&bullet;</span> <span>{{ $news->created_at->diffForHumans() }}</span></div>
-                                    <h2 class="mb-2"><a href="#">{{ Str::limit($news->title, 30) }}</a></h2>
+                                    <h2 class="mb-2"><a href="{{ route('detailNews', $news->slug) }}">{{ Str::limit($news->title, 30) }}</a></h2>
                                     <span class="author mb-3 d-block">Admin</span>
                                     <p class="mb-4 d-block">{{ Str::limit(strip_tags($news->content, 70)) }}</p>
                                 </div>
@@ -137,7 +137,7 @@
                                         class="mx-1">&bullet;</span>
                                     <span>{{ $news->created_at->diffForHumans() }}</span>
                                 </div>
-                                <h2 class="mb-2"><a href="#">
+                                <h2 class="mb-2"><a href="{{ route('detailNews', $news->slug) }}">
                                         {{-- limit Character --}}
                                         {{ Str::limit($news->title, 30) }}</a></h2>
                                 <span class="author mb-3 d-block">Admin</span>

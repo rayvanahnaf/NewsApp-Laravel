@@ -17,6 +17,7 @@ use App\Http\Controllers\Admin\CategoryController;
 */
 
 Route::get('/', [App\Http\Controllers\Frontend\FrontendController::class, 'index']);
+Route::get('/detail/news/{slug}', [App\Http\Controllers\Frontend\FrontendController::class, 'detailNews'])->name('detailNews');
 
 Auth::routes();
 
